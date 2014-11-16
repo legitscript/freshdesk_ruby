@@ -27,4 +27,21 @@ describe Freshdesk::Endpoint do
       end
     end
   end
+
+  describe '#tickets_path' do
+    context 'when an options hash is given' do
+      it 'turns the options into query string parameters' do
+        url = endpoint.tickets_path(page: 2, foo: 'bar')
+        expect(url).to include('page=2')
+        expect(url).to include('foo=bar')
+      end
+    end
+
+    context 'when no options hash is given' do
+      it 'adds default query string parameters' do
+        url = endpoint.tickets_path
+        expect(url).to include('format=json')
+      end
+    end
+  end
 end

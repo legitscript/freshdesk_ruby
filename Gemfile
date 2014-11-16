@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'httpclient'
+gem 'activesupport'
 
 group :test do
   gem 'webmock'

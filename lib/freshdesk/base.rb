@@ -8,10 +8,9 @@ module Freshdesk
     end
 
     def set_variable(attr, value)
-      reader = "attr_reader:#{attr}"
       ivar = "@#{attr}"
-      self.class.class_eval(reader)
       instance_variable_set(ivar, value)
+      instance_eval "def #{attr}; @#{attr}; end"
     end
   end
 end

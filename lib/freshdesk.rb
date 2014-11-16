@@ -1,5 +1,6 @@
 require 'json'
 require 'base64'
+require 'active_support/core_ext/hash'
 require_relative 'freshdesk/configuration'
 
 #

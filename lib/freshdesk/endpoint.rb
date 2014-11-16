@@ -10,6 +10,13 @@ module Freshdesk
       helpdesk_path + path
     end
 
+    def tickets_path(parameters = {})
+      all_params = default_parameters.merge(parameters)
+      query_string = '?' + all_params.to_query
+      path = '/tickets/filter/all_tickets' + query_string
+      helpdesk_path + path
+    end
+
     def request_headers
       {
         'Content-Type' => 'application/json',
@@ -34,6 +41,12 @@ module Freshdesk
 
     def config
       Freshdesk.configuration
+    end
+
+    def default_parameters
+      {
+        'format' => 'json'
+      }
     end
   end
 end

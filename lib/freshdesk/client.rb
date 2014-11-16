@@ -18,6 +18,13 @@ module Freshdesk
       Ticket.new(ticket)
     end
 
+    def all_tickets(options = {})
+      url = endpoint.tickets_path(options)
+      response = get_request(url)
+      body = JSON.parse(response.body)
+      body.map { |ticket| Ticket.new(ticket) }
+    end
+
     private
 
     def get_request(url)

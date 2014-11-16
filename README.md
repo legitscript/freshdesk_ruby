@@ -5,6 +5,8 @@ A Ruby wrapper for the Freshdesk Developer's API.
 ### Supported APIs:
 
 * Tickets
+  - (GET) View a ticket
+  - (GET) View a list of tickets
 
 ### Usage:
 
