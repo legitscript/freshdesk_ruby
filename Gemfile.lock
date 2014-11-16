@@ -1,3 +1,10 @@
+PATH
+  remote: .
+  specs:
+    freshdesk_ruby (0.0.1)
+      activesupport
+      httpclient
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -59,8 +66,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activesupport
-  httpclient
+  freshdesk_ruby!
   pry
   rspec
   rubocop

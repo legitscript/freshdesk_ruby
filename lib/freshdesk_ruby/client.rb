@@ -1,5 +1,3 @@
-require 'httpclient'
-
 module Freshdesk
   #
   class Client

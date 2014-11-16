@@ -1,4 +1,4 @@
-# freshdesk-ruby
+# freshdesk_ruby
 
 A Ruby wrapper for the Freshdesk Developer's API.
 
