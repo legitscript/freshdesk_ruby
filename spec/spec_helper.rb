@@ -1,4 +1,4 @@
-Bundler.require(:test)
+Bundler.require
 
 require 'webmock/rspec'
 

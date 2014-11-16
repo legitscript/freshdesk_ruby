@@ -13,7 +13,7 @@ A Ruby wrapper for the Freshdesk Developer's API.
 1.) Add it to your Gemfile.
 
 ```ruby
-  gem 'freshdesk-ruby', git: '<git url>/freshdesk-ruby.git', branch: 'master'
+  gem 'freshdesk_ruby', git: 'git://github.com/legitscript/freshdesk_ruby.git', branch: 'master'
 ```
 
 2.) Install.
@@ -31,6 +31,12 @@ A Ruby wrapper for the Freshdesk Developer's API.
   end
 ```
 
-You can configure the following properties: your company's subdomain, the protocol (https or http), the API key, your company's password, and company's username.
+You can configure the following properties:
+
+* your subdomain
+* the protocol (https or http)
+* the API key
+* your password
+* your username
 
 Please see the examples.rb file for usage examples.
