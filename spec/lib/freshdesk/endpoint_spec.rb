@@ -36,12 +36,5 @@ describe Freshdesk::Endpoint do
         expect(url).to include('foo=bar')
       end
     end
-
-    context 'when no options hash is given' do
-      it 'adds default query string parameters' do
-        url = endpoint.tickets_path
-        expect(url).to include('format=json')
-      end
-    end
   end
 end

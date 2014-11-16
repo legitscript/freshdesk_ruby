@@ -32,3 +32,5 @@ A Ruby wrapper for the Freshdesk Developer's API.
 ```
 
 You can configure the following properties: your company's subdomain, the protocol (https or http), the API key, your company's password, and company's username.
+
+Please see the examples.rb file for usage examples.
