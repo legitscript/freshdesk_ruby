@@ -2,13 +2,13 @@
 
 A Ruby wrapper for the Freshdesk Developer's API.
 
-### Supported APIs:
+## Supported APIs:
 
-* Tickets
-  - (GET) View a ticket
-  - (GET) View a list of tickets
+### Tickets
+* (GET) View a ticket
+* (GET) View a list of tickets
 
-### Usage:
+## Usage:
 
 1.) Add it to your Gemfile.
 
@@ -39,4 +39,4 @@ You can configure the following properties:
 * your password
 * your username
 
-Please see the examples.rb file for usage examples.
+Please see the examples.txt file for usage examples.
