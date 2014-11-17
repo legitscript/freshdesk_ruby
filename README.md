@@ -7,6 +7,7 @@ A Ruby wrapper for the Freshdesk Developer's API.
 ### Tickets
 * (GET) View a ticket
 * (GET) View a list of tickets
+* (POST) Create a new ticket
 
 ## Usage:
 
