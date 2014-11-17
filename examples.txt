@@ -1,4 +1,5 @@
 # The Ticket API
+# --------------
 
 # Get one ticket by id.
 # Returns a Freshdesk::Ticket object.
@@ -32,3 +33,19 @@ body = { subject: 'My Important Question',
          description: 'Details of the question' }
 
 Freshdesk::Ticket.create(body)
+
+# Dealing with errors
+# -------------------
+
+# When the response code isn't 2XX, or the response body indicates your authentication failed, you will get Freshdesk::Error object back and can inspect the response code and body.
+
+# With bad authentication:
+Freshdesk.configure { |c| c.api_key = 'wrong key' }
+object = Freshdesk::Ticket.find(10) #=> #<Freshdesk::ResponseError: Freshdesk::ResponseError>
+object.body # => "{\"require_login\":true}"
+object.code # => 200
+
+# When a record isn't found:
+object = Freshdesk::Ticket.find(11230) #=> #<Freshdesk::ResponseError: Freshdesk::ResponseError>
+object.body # => "{\"errors\":{\"error\":\"Record Not Found\"}}"
+object.code # 404

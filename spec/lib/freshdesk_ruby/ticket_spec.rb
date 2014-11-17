@@ -42,6 +42,19 @@ describe Freshdesk::Ticket do
       ticket = described_class.find(ticket_id)
       expect(ticket).to be_a(Freshdesk::Ticket)
     end
+
+    context 'when the response code is not 2xx' do
+      before do
+        stub_request(:get, endpoint.ticket_path(ticket_id))
+           .to_return(status: 404, body: '{}')
+
+      end
+
+      it 'returns a Freshdesk::Response error' do
+        object = described_class.find(ticket_id)
+        expect(object).to be_a(Freshdesk::ResponseError)
+      end
+    end
   end
 
   describe '.all' do

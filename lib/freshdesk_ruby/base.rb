@@ -21,6 +21,15 @@ module Freshdesk
       def post_request(url, body)
         client.post(url, body, endpoint.request_headers)
       end
+
+      def response_error(response)
+        parsed = JSON.parse(response.body)
+        if response.code.to_s !~ /2\d\d/
+          Freshdesk::ResponseError.new(response)
+        elsif parsed.is_a?(Hash) && parsed.fetch('require_login', false)
+          Freshdesk::ResponseError.new(response)
+        end
+      end
     end
 
     def initialize(attributes)
