@@ -2,7 +2,6 @@ require 'bundler/setup'
 
 require 'json'
 require 'base64'
-require 'pry'
 require 'httpclient'
 require 'active_support/core_ext/hash'
 require_relative 'freshdesk_ruby/configuration'
