@@ -1,36 +1,34 @@
-client = Freshdesk::Client.new
-
 # The Ticket API
 
 # Get one ticket by id.
 # Returns a Freshdesk::Ticket object.
-client.ticket(10)
+Freshdesk::Ticket.find(10)
 
 # Get a list of all tickets. The Freshdesk API's default
 # concept of "all" is all new, unopened tickets.
 # Returns an array of Freshdesk::Ticket objects.
-client.tickets
+Freshdesk::Ticket.all
 
 # Okay, REALLY give me ALL the tickets. I mean it. Not just new ones.
-client.tickets(filter_name: 'all_tickets')
+Freshdesk::Ticket.all(filter_name: 'all_tickets')
 
 # You can use any filter provided by Freshdesk.
 # http://freshdesk.com/api#view_all_ticket
 
 # Get the second page of tickets.
 # Freshdesk paginates tickets in batches of 30.
-client.tickets(filter_name: 'all_tickets', page: 2)
+Freshdesk::Ticket.all(filter_name: 'all_tickets', page: 2)
 
 # Get deleted tickets.
-client.tickets(filter_name: 'deleted')
+Freshdesk::Ticket.all(filter_name: 'deleted')
 
 # Get all tickets submitted by one email address.
-client.tickets(filter_name: 'all_tickets', email: 'example@gmail.com')
+Freshdesk::Ticket.all(filter_name: 'all_tickets', email: 'example@gmail.com')
 
 # Create a new ticket.
 # Returns a Freshdesk::Ticket object.
 
-body = { subject: 'My Important Question,
+body = { subject: 'My Important Question',
          description: 'Details of the question' }
 
-client.create_ticket(body)
+Freshdesk::Ticket.create(body)
