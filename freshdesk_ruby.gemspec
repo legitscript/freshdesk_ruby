@@ -18,5 +18,4 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rubocop'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'webmock'
-  gem.add_development_dependency 'pry'
 end
