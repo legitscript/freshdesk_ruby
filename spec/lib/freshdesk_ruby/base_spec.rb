@@ -51,5 +51,20 @@ describe Freshdesk::Base do
         expect(object).to be_a(Freshdesk::ResponseError)
       end
     end
+
+    context 'when a JSON object with an "errors" key is sent' do
+      let(:response_body) { "{\"errors\":{\"no_email\":true}}" }
+
+      before do
+        stub_request(:get, endpoint.tickets_path)
+          .to_return(status: 200, body: response_body)
+      end
+
+      it 'returns a Freshdesk::ResponseError' do
+        response = described_class.get_request(endpoint.tickets_path)
+        object = described_class.response_error(response)
+        expect(object).to be_a(Freshdesk::ResponseError)
+      end
+    end
   end
 end

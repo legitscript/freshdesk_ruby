@@ -1,6 +1,8 @@
 module Freshdesk
   #
   class Base
+    ERRORS = %w(require_login errors)
+
     class << self
       def endpoint
         Freshdesk::Endpoint.new
@@ -26,9 +28,14 @@ module Freshdesk
         parsed = JSON.parse(response.body)
         if response.code.to_s !~ /2\d\d/
           Freshdesk::ResponseError.new(response)
-        elsif parsed.is_a?(Hash) && parsed.fetch('require_login', false)
+        elsif contains_errors?(parsed)
           Freshdesk::ResponseError.new(response)
         end
+      end
+
+      def contains_errors?(parsed_response)
+        return false unless parsed_response.is_a?(Hash)
+        (parsed_response.keys & ERRORS).any?
       end
     end
 

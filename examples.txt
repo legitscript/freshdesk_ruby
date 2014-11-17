@@ -26,6 +26,9 @@ Freshdesk::Ticket.all(filter_name: 'deleted')
 # Get all tickets submitted by one email address.
 Freshdesk::Ticket.all(filter_name: 'all_tickets', email: 'example@gmail.com')
 
+# Get all tickets attached to one requester ID.
+Freshdesk::Ticket.all(filter_name: 'all_tickets', requester: 5002602203)
+
 # Create a new ticket.
 # Returns a Freshdesk::Ticket object.
 
