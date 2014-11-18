@@ -1,0 +1,50 @@
+[
+    {
+        "ticket_field": {
+            "active": true,
+            "created_at": "2013-12-11T18:11:30+05:30",
+            "description": "Ticket requester",
+            "editable_in_portal": true,
+            "field_options": {
+                "portalcc": false,
+                "portalcc_to": "company"
+            },
+            "field_type": "default_requester",
+            "flexifield_def_entry_id": null,
+            "id": 1,
+            "label": "Search a requester",
+            "label_in_portal": "Requester",
+            "name": "requester",
+            "position": 1,
+            "required": true,
+            "required_for_closure": false,
+            "required_in_portal": true,
+            "updated_at": "2013-12-11T18:39:01+05:30",
+            "visible_in_portal": true,
+            "choices": [],
+            "nested_ticket_fields": []
+        }
+    },
+    {
+        "ticket_field": {
+            "active": true,
+            "created_at": "2013-12-11T18:39:01+05:30",
+            "description": "",
+            "editable_in_portal": false,
+            "field_options": null,
+            "field_type": "custom_text",
+            "flexifield_def_entry_id": 1,
+            "id": 11,
+            "label": "Custom Field 2",
+            "label_in_portal": "Custom Field 2",
+            "name": "Custom Field 2",
+            "position":2,"required": false,
+            "required_for_closure": false,
+            "required_in_portal": false,
+            "updated_at": "2014-01-30T16:20:01+05:30",
+            "visible_in_portal": true,
+            "choices": [],
+            "nested_ticket_fields": []
+        }
+    }
+]

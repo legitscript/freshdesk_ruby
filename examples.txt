@@ -41,6 +41,10 @@ Freshdesk::Ticket.create(body)
 # Returns a boolean true if it was successfully deleted.
 Freshdesk::Ticket.destroy(10)
 
+# Get all attributes/fields of a ticket.
+# Returns an array of Freshdesk::TicketField objects.
+Freshdesk::TicketField.all
+
 # Dealing with errors
 # -------------------
 

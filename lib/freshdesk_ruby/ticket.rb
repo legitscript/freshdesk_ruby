@@ -1,4 +1,3 @@
-require 'pry'
 module Freshdesk
   #
   class Ticket < Freshdesk::Base
@@ -33,10 +32,10 @@ module Freshdesk
         return error if error
         parsed = JSON.parse(response.body)
         if parsed.is_a?(Array)
-          parsed.map { |ticket| Ticket.new(ticket) }
+          parsed.map { |ticket| new(ticket) }
         else
           ticket = parsed['helpdesk_ticket']
-          Ticket.new(ticket)
+          new(ticket)
         end
       end
     end

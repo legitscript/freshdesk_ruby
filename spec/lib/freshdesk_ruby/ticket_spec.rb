@@ -9,7 +9,7 @@ describe Freshdesk::Ticket do
 
   let(:parsed_data) { JSON.parse(response_body)['helpdesk_ticket'] }
 
-  let(:ticket) { Freshdesk::Ticket.new(parsed_data) }
+  let(:ticket) { described_class.new(parsed_data) }
 
   let(:endpoint) { Freshdesk::Endpoint.new }
 
@@ -40,7 +40,7 @@ describe Freshdesk::Ticket do
 
     it 'returns a single ticket with a given ID' do
       ticket = described_class.find(ticket_id)
-      expect(ticket).to be_a(Freshdesk::Ticket)
+      expect(ticket).to be_a(described_class)
     end
 
     context 'when the response code is not 2xx' do
@@ -72,7 +72,7 @@ describe Freshdesk::Ticket do
 
     it 'returns an array of tickets' do
       tickets = described_class.all
-      full_of_tickets = tickets.all? { |t| t.is_a?(Freshdesk::Ticket) }
+      full_of_tickets = tickets.all? { |t| t.is_a?(described_class) }
       expect(full_of_tickets).to eq(true)
     end
 
@@ -118,7 +118,7 @@ describe Freshdesk::Ticket do
 
     it 'returns the ticket created in Freshdesk' do
       ticket = described_class.create(body)
-      expect(ticket).to be_a(Freshdesk::Ticket)
+      expect(ticket).to be_a(described_class)
     end
   end
 
@@ -132,7 +132,7 @@ describe Freshdesk::Ticket do
 
     context 'when successful' do
       it 'returns true' do
-        is_deleted = Freshdesk::Ticket.destroy(ticket_id)
+        is_deleted = described_class.destroy(ticket_id)
         expect(is_deleted).to eq(true)
       end
     end

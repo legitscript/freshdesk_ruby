@@ -16,6 +16,10 @@ module Freshdesk
       helpdesk_path + path
     end
 
+    def ticket_fields_path
+      helpdesk_path + '/ticket_fields.json'
+    end
+
     def request_headers
       {
         'Content-Type' => 'application/json',
