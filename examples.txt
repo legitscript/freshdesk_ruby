@@ -37,6 +37,10 @@ body = { subject: 'My Important Question',
 
 Freshdesk::Ticket.create(body)
 
+# Delete a ticket with a given ID.
+# Returns a boolean true if it was successfully deleted.
+Freshdesk::Ticket.destroy(10)
+
 # Dealing with errors
 # -------------------
 
@@ -51,4 +55,4 @@ object.code # => 200
 # When a record isn't found:
 object = Freshdesk::Ticket.find(11230) #=> #<Freshdesk::ResponseError: Freshdesk::ResponseError>
 object.body # => "{\"errors\":{\"error\":\"Record Not Found\"}}"
-object.code # 404
+object.code # => 404

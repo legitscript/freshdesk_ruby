@@ -24,6 +24,10 @@ module Freshdesk
         client.post(url, body, endpoint.request_headers)
       end
 
+      def delete_request(url)
+        client.delete(url, nil, endpoint.request_headers)
+      end
+
       def response_error(response)
         parsed = JSON.parse(response.body)
         if response.code.to_s !~ /2\d\d/

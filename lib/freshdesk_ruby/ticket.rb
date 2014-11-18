@@ -1,3 +1,4 @@
+require 'pry'
 module Freshdesk
   #
   class Ticket < Freshdesk::Base
@@ -19,6 +20,12 @@ module Freshdesk
         url = endpoint.tickets_path
         response = post_request(url, req_body)
         create_from_response(response)
+      end
+
+      def destroy(id)
+        url = endpoint.ticket_path(id)
+        response = delete_request(url)
+        response.body == '"deleted"'
       end
 
       def create_from_response(response)

@@ -121,4 +121,20 @@ describe Freshdesk::Ticket do
       expect(ticket).to be_a(Freshdesk::Ticket)
     end
   end
+
+  describe '.destroy' do
+    let(:ticket_id) { 10 }
+
+    before do
+      stub_request(:delete, endpoint.ticket_path(ticket_id))
+        .to_return(status: 200, body: '"deleted"')
+    end
+
+    context 'when successful' do
+      it 'returns true' do
+        is_deleted = Freshdesk::Ticket.destroy(ticket_id)
+        expect(is_deleted).to eq(true)
+      end
+    end
+  end
 end
