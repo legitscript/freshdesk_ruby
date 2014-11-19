@@ -137,4 +137,33 @@ describe Freshdesk::Ticket do
       end
     end
   end
+
+  describe '.update' do
+    let(:ticket_id) { 10 }
+
+    let(:fields_to_update) do
+      {
+        priority: 1,
+        status: 2
+      }
+    end
+
+    let(:filepath) do
+      path = File.join('spec', 'support', 'responses', 'update_ticket.json')
+      File.expand_path(path)
+    end
+
+    let(:response_body) do
+      File.read(filepath)
+    end
+
+    before do
+      stub_request(:put, endpoint.ticket_path(ticket_id))
+        .to_return(status: 200, body: response_body)
+    end
+
+    it 'returns an updated ticket' do
+      updated = described_class.update(ticket_id, fields_to_update)
+    end
+  end
 end

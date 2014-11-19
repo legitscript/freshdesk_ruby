@@ -8,6 +8,7 @@ A Ruby wrapper for the Freshdesk Developer's API.
 * (GET) View a ticket
 * (GET) View a list of tickets
 * (POST) Create a new ticket
+* (PUT) Update a ticket
 * (DELETE) Delete a ticket
 * (GET) View all ticket fields
 

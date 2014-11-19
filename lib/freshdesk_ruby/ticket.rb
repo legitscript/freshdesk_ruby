@@ -21,6 +21,13 @@ module Freshdesk
         create_from_response(response)
       end
 
+      def update(id, body)
+        req_body = request_body.ticket_body(body)
+        url = endpoint.ticket_path(id)
+        response = put_request(url, req_body)
+        create_from_response(response)
+      end
+
       def destroy(id)
         url = endpoint.ticket_path(id)
         response = delete_request(url)
@@ -34,7 +41,7 @@ module Freshdesk
         if parsed.is_a?(Array)
           parsed.map { |ticket| new(ticket) }
         else
-          ticket = parsed['helpdesk_ticket']
+          ticket = parsed['helpdesk_ticket'] || parsed['ticket']
           new(ticket)
         end
       end

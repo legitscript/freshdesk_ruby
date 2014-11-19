@@ -37,6 +37,12 @@ body = { subject: 'My Important Question',
 
 Freshdesk::Ticket.create(body)
 
+# Update a ticket with the fields you want to change.
+changes = { subject: 'Changing my ticket subject name' }
+Freshdesk::Ticket.update(10, changes)
+ticket = Freshdesk::Ticket.find(10)
+ticket.subject # => 'Changing my ticket subject name'
+
 # Delete a ticket with a given ID.
 # Returns a boolean true if it was successfully deleted.
 Freshdesk::Ticket.destroy(10)

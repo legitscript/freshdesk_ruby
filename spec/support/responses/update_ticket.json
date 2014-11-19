@@ -1,0 +1,14 @@
+{
+  "ticket" : {
+    "deleted" : false,
+    "display_id" : 141,
+    "subject" : "freshdesk test",
+    "status_name" : "Pending",
+    "requester_status_name" : "Awaiting your Reply",
+    "priority_name" : "High",
+    "source_name" : "Portal",
+    "requester_name" : "freshdesk",
+    "responder_name" : "Support",
+    "to_emails" : null
+  }
+}
