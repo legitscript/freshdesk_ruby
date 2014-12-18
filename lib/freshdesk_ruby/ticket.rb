@@ -41,7 +41,7 @@ module Freshdesk
         if parsed.is_a?(Array)
           parsed.map { |ticket| new(ticket) }
         else
-          ticket = parsed['helpdesk_ticket'] || parsed['ticket']
+          ticket = parsed['helpdesk_ticket'] || parsed['ticket'] || {}
           new(ticket)
         end
       end
