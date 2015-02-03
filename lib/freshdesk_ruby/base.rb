@@ -45,6 +45,13 @@ module Freshdesk
         return false unless parsed_response.is_a?(Hash)
         (parsed_response.keys & ERRORS).any?
       end
+
+      def with_error_handling(response)
+        error = response_error(response)
+        raise error if error
+        parsed = JSON.parse(response.body)
+        yield parsed
+      end
     end
 
     def initialize(attributes)

@@ -34,6 +34,7 @@ module Freshdesk
         response.body == '"deleted"'
       end
 
+      # [MZ] TODO: Use #with_error_handling in Freshdesk::Base
       def create_from_response(response)
         error = response_error(response)
         return error if error
@@ -41,8 +42,17 @@ module Freshdesk
         if parsed.is_a?(Array)
           parsed.map { |ticket| new(ticket) }
         else
-          ticket = parsed['helpdesk_ticket'] || parsed['ticket'] || {}
-          new(ticket)
+          response_object = parsed['helpdesk_ticket'] || parsed['ticket'] || {}
+          new(response_object)
+        end
+      end
+
+      def add_note(ticket_id, user_id, body)
+        req_body = request_body.note_body(user_id, body)
+        url = endpoint.ticket_note_path(ticket_id)
+        response = post_request(url, req_body)
+        with_error_handling(response) do |parsed|
+          Note.new(parsed['note'])
         end
       end
     end

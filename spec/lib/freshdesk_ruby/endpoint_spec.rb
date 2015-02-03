@@ -37,4 +37,18 @@ describe Freshdesk::Endpoint do
       end
     end
   end
+
+  describe '#ticket_note_path' do
+    it 'uses the id to parameterize the path' do
+      url = endpoint.ticket_note_path(45)
+      expect(url).to match(/helpdesk\/tickets\/45\/conversations\/note\.json$/)
+    end
+  end
+
+  describe '#list_users_path' do
+    it 'escapes the query' do
+      url = endpoint.list_users_path(query: ' hello')
+      expect(url).to match(/query=%20hello$/)
+    end
+  end
 end
