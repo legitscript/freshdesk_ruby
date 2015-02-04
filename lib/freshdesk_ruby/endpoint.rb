@@ -20,6 +20,15 @@ module Freshdesk
       helpdesk_path + '/ticket_fields.json'
     end
 
+    def ticket_note_path(id)
+      path = File.join('/tickets', id.to_s, 'conversations/note.json')
+      helpdesk_path + path
+    end
+
+    def list_users_path(query:)
+      URI.escape(config.base_endpoint + "/contacts.json?query=#{query}")
+    end
+
     def request_headers
       {
         'Content-Type' => 'application/json',

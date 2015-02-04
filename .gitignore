@@ -2,3 +2,8 @@
 
 *.swp
 *.swo
+
+Gemfile.lock
+
+bin/
+.bundle/

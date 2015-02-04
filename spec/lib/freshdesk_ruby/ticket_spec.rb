@@ -50,9 +50,8 @@ describe Freshdesk::Ticket do
 
       end
 
-      it 'returns a Freshdesk::Response error' do
-        object = described_class.find(ticket_id)
-        expect(object).to be_a(Freshdesk::ResponseError)
+      it 'raises a Freshdesk::Response error' do
+        expect { described_class.find(ticket_id) }.to raise_error
       end
     end
   end
@@ -164,6 +163,38 @@ describe Freshdesk::Ticket do
 
     it 'returns an updated ticket' do
       updated = described_class.update(ticket_id, fields_to_update)
+      expect(updated.priority_name).to eq('High')
+      expect(updated.status_name).to eq('Pending')
+    end
+  end
+
+  describe '#add_note' do
+    let(:body) do
+      {
+        body: 'Some details on the issue...',
+        email: 'tom@outerspace.com',
+        private: false,
+      }
+    end
+
+    let(:filepath) do
+      path = File.join('spec', 'support', 'responses', 'ticket.json')
+      File.expand_path(path)
+    end
+
+    let(:response_body) do
+      File.read(filepath)
+    end
+
+    before do
+      stub_request(:post, endpoint.tickets_path)
+        .with(body: request_body.ticket_body(body))
+        .to_return(status: 200, body: response_body)
+    end
+
+    it 'returns the ticket created in Freshdesk' do
+      ticket = described_class.create(body)
+      expect(ticket).to be_a(described_class)
     end
   end
 end
