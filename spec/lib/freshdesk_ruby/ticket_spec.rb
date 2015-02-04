@@ -50,9 +50,8 @@ describe Freshdesk::Ticket do
 
       end
 
-      it 'returns a Freshdesk::Response error' do
-        object = described_class.find(ticket_id)
-        expect(object).to be_a(Freshdesk::ResponseError)
+      it 'raises a Freshdesk::Response error' do
+        expect { described_class.find(ticket_id) }.to raise_error
       end
     end
   end
