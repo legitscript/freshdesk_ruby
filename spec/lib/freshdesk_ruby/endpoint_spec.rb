@@ -47,7 +47,7 @@ describe Freshdesk::Endpoint do
 
   describe '#list_users_path' do
     it 'escapes the query' do
-      url = endpoint.list_users_path(query: ' hello')
+      url = endpoint.list_users_path(' hello')
       expect(url).to match(/query=%20hello$/)
     end
   end

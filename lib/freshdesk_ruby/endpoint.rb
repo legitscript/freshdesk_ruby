@@ -25,7 +25,7 @@ module Freshdesk
       helpdesk_path + path
     end
 
-    def list_users_path(query:)
+    def list_users_path(query)
       URI.escape(config.base_endpoint + "/contacts.json?query=#{query}")
     end
 
