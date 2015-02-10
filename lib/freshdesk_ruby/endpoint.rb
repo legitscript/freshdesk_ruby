@@ -29,6 +29,10 @@ module Freshdesk
       URI.escape(config.base_endpoint + "/contacts.json?query=#{query}")
     end
 
+    def user_by_id_path(id)
+      URI.escape(config.base_endpoint + "/contacts/#{id}.json")
+    end
+
     def request_headers
       {
         'Content-Type' => 'application/json',

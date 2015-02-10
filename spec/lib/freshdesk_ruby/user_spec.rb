@@ -33,12 +33,31 @@ describe Freshdesk::User do
     before do
       stub_request(:get, endpoint.list_users_path("email is james.rucker@legitscript.com"))
          .to_return(status: 200, body: response_body, headers: {})
-
     end
 
     it 'returns a single user with a given email' do
       user = described_class.find_by_email(user_email)
       expect(user).to be_a(described_class)
+    end
+  end
+
+  describe '#find_by_id' do
+    let(:user_id) { 'abcde' }
+    let(:url) { endpoint.user_by_id_path(user_id) }
+    let(:response_body) { '{"email":"james.rucker@legitscript.com"}'}
+
+    before do
+      stub_request(:get, url).to_return(status: 200, body: response_body, headers: {})
+    end
+
+    it 'calls the Freshdesk endpoint for getting user by ID' do
+      described_class.find_by_id(user_id)
+      expect(WebMock).to have_requested(:get, url)
+    end
+
+    it 'parses JSON and returns a User instance' do
+      user = described_class.find_by_id(user_id)
+      expect(user.email).to eq('james.rucker@legitscript.com')
     end
   end
 end

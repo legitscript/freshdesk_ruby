@@ -15,7 +15,13 @@ module Freshdesk
         end
       end
 
+      def find_by_id(id)
+        url = endpoint.user_by_id_path(id)
+        response = get_request(url)
+        with_error_handling(response) do |parsed_user|
+          return new(parsed_user)
+        end
+      end
     end
   end
 end
-
