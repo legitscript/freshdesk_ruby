@@ -31,7 +31,7 @@ describe Freshdesk::User do
     let(:response_body) { File.read(filepath) }
 
     before do
-      stub_request(:get, endpoint.list_users_path(query: "email is james.rucker@legitscript.com"))
+      stub_request(:get, endpoint.list_users_path("email is james.rucker@legitscript.com"))
          .to_return(status: 200, body: response_body, headers: {})
 
     end
