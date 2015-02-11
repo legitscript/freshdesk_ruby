@@ -62,7 +62,7 @@ module Freshdesk
     end
 
     def format_notes(note_hashes)
-      note_hashes.map { |h| Note.new(h) }
+      note_hashes.map { |h| Note.new(h['note']) }
     end
   end
 end
