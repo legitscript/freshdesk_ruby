@@ -32,19 +32,26 @@ describe Freshdesk::User do
 
     before do
       stub_request(:get, endpoint.list_users_path("email is james.rucker@legitscript.com"))
-         .to_return(status: 200, body: response_body, headers: {})
+        .to_return(status: 200, body: response_body, headers: {})
     end
 
     it 'returns a single user with a given email' do
       user = described_class.find_by_email(user_email)
       expect(user).to be_a(described_class)
     end
+
+    describe 'the returned User instance' do
+      it 'represents all the Freshdesk JSON fields as instance variables' do
+        user = described_class.find_by_email(user_email)
+        expect(user.respond_to?(:email)).to be(true)
+      end
+    end
   end
 
   describe '#find_by_id' do
     let(:user_id) { 'abcde' }
     let(:url) { endpoint.user_by_id_path(user_id) }
-    let(:response_body) { '{"email":"james.rucker@legitscript.com"}'}
+    let(:response_body) { '{"user":{"email":"james.rucker@legitscript.com"}}'}
 
     before do
       stub_request(:get, url).to_return(status: 200, body: response_body, headers: {})
