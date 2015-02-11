@@ -34,8 +34,7 @@ describe Freshdesk::Ticket do
 
     before do
       stub_request(:get, endpoint.ticket_path(ticket_id))
-         .to_return(status: 200, body: response_body, headers: {})
-
+        .to_return(status: 200, body: response_body, headers: {})
     end
 
     it 'returns a single ticket with a given ID' do
@@ -46,8 +45,7 @@ describe Freshdesk::Ticket do
     context 'when the response code is not 2xx' do
       before do
         stub_request(:get, endpoint.ticket_path(ticket_id))
-           .to_return(status: 404, body: '{}')
-
+          .to_return(status: 404, body: '{}')
       end
 
       it 'raises a Freshdesk::Response error' do
@@ -66,7 +64,7 @@ describe Freshdesk::Ticket do
 
     before do
       stub_request(:get, endpoint.tickets_path)
-         .to_return(status: 200, body: response_body, headers: {})
+        .to_return(status: 200, body: response_body, headers: {})
     end
 
     it 'returns an array of tickets' do
@@ -78,7 +76,7 @@ describe Freshdesk::Ticket do
     context 'when given params' do
       before do
         stub_request(:get, endpoint.tickets_path(page: 3))
-           .to_return(status: 200, body: response_body, headers: {})
+          .to_return(status: 200, body: response_body, headers: {})
       end
 
       it 'adds those parameters to the query string' do
@@ -173,7 +171,7 @@ describe Freshdesk::Ticket do
       {
         body: 'Some details on the issue...',
         email: 'tom@outerspace.com',
-        private: false,
+        private: false
       }
     end
 
@@ -195,6 +193,13 @@ describe Freshdesk::Ticket do
     it 'returns the ticket created in Freshdesk' do
       ticket = described_class.create(body)
       expect(ticket).to be_a(described_class)
+    end
+  end
+
+  describe '#initialize' do
+    it 'makes contained notes into Freshdesk::Note instances' do
+      all_notes = ticket.notes.all? { |note| note.class <= Freshdesk::Note }
+      expect(all_notes).to be(true)
     end
   end
 end

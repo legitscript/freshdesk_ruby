@@ -51,5 +51,18 @@ module Freshdesk
         end
       end
     end
+
+    def initialize(attributes)
+      attributes.each do |(attr, value)|
+        unless respond_to?(attr)
+          value = attr == 'notes' ? format_notes(value) : value
+          set_variable(attr, value)
+        end
+      end
+    end
+
+    def format_notes(note_hashes)
+      note_hashes.map { |h| Note.new(h) }
+    end
   end
 end
