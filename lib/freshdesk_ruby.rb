@@ -19,6 +19,7 @@ module Freshdesk
 end
 
 require_relative 'freshdesk_ruby/base'
+require_relative 'freshdesk_ruby/agent'
 require_relative 'freshdesk_ruby/ticket'
 require_relative 'freshdesk_ruby/user'
 require_relative 'freshdesk_ruby/note'

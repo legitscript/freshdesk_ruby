@@ -1,0 +1,38 @@
+[
+   {
+      "agent":{
+         "active_since":null,
+         "available":true,
+         "created_at":"2014-10-09T16:53:26-07:00",
+         "id":5000040027,
+         "occasional":false,
+         "points":100,
+         "scoreboard_level_id":5000149526,
+         "signature":null,
+         "signature_html":"",
+         "ticket_permission":1,
+         "updated_at":"2014-10-09T16:53:27-07:00",
+         "user_id":5001483722,
+         "user":{
+            "active":true,
+            "address":null,
+            "created_at":"2014-10-09T16:53:26-07:00",
+            "deleted":false,
+            "description":null,
+            "email":"mohan.zhang@legitscript.com",
+            "external_id":null,
+            "fb_profile_id":null,
+            "helpdesk_agent":true,
+            "id":5001483722,
+            "job_title":"",
+            "language":"en",
+            "mobile":"",
+            "name":"Mohan Zhang",
+            "phone":"",
+            "time_zone":"Arizona",
+            "twitter_id":null,
+            "updated_at":"2015-02-03T13:01:02-07:00"
+         }
+      }
+   }
+]
