@@ -15,7 +15,7 @@ module Freshdesk
         url = endpoint.list_agents_path("email is #{email}")
         response = get_request(url)
         with_error_handling(response) do |parsed|
-          agents = parsed.map { |agent| new(agent) }
+          agents = parsed.map { |agent| new(agent['agent']) }
           if agents.size > 1
             raise "More than one agent with the same email?"
           else
