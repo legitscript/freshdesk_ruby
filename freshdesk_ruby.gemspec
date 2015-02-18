@@ -14,6 +14,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency 'httpclient'
   gem.add_runtime_dependency 'activesupport'
+  gem.add_runtime_dependency 'typhoeus'
 
   gem.add_development_dependency 'rubocop'
   gem.add_development_dependency 'rspec'

@@ -87,6 +87,36 @@ describe Freshdesk::Ticket do
     end
   end
 
+  describe '#find_all' do
+    let(:filepath) do
+      path = File.join('spec', 'support', 'responses', 'ticket.json')
+      File.expand_path(path)
+    end
+
+    let(:response_body) { File.read(filepath) }
+
+    before(:each) do
+      expect(described_class).to receive(:all).and_return(
+        [
+          described_class.new("id" => 50000, "display_id" => 5),
+          described_class.new("id" => 60000, "display_id" => 6)
+        ]
+      )
+
+      stub_request(:get, /freshdesk/).to_return(status: 200, body: response_body)
+    end
+
+    after(:all) do
+      Typhoeus::Expectation.clear
+    end
+
+    subject { described_class.find_all }
+
+    it "looks up tickets in parallel using Typhoeus" do
+      expect(subject.size).to eq(2)
+    end
+  end
+
   describe '.create' do
     let(:body) do
       {

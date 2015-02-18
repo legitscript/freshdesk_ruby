@@ -18,6 +18,28 @@ module Freshdesk
         end
       end
 
+      def find_all(options = {})
+        tickets = all(options)
+
+        hydra = Typhoeus::Hydra.new
+        requests = tickets.map do |ticket|
+          request = Typhoeus::Request.new(endpoint.ticket_path(ticket.display_id),
+                                          headers: endpoint.request_headers)
+          hydra.queue(request)
+          request
+        end
+
+        hydra.run # [MZ] Blocking!
+
+        tickets = requests.map do |request|
+          with_error_handling(request.response) do |parsed|
+            new(parsed['helpdesk_ticket'])
+          end
+        end
+
+        tickets
+      end
+
       def create(body)
         req_body = request_body.ticket_body(body)
         url = endpoint.tickets_path

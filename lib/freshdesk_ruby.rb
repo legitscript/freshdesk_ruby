@@ -4,6 +4,7 @@ require 'json'
 require 'base64'
 require 'httpclient'
 require 'uri'
+require 'typhoeus'
 require 'active_support/core_ext/hash'
 require_relative 'freshdesk_ruby/configuration'
 

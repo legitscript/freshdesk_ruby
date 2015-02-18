@@ -6,7 +6,7 @@ module Freshdesk
 
     def initialize
       @protocol = 'https'
-      @subdomain = ''
+      @subdomain = 'www'
       @api_key = ''
       @password = 'X'
       @username = ''
