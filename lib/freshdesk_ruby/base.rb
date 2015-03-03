@@ -1,7 +1,7 @@
 module Freshdesk
   #
   class Base
-    ERRORS = %w(require_login errors)
+    ERRORS = %w(require_login errors access_denied)
 
     class << self
       def endpoint
