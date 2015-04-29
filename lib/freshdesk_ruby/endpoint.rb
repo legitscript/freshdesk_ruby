@@ -29,6 +29,10 @@ module Freshdesk
       URI.escape(config.base_endpoint + "/contacts.json?query=#{query}")
     end
 
+    def create_user_path
+      URI.escape(config.base_endpoint + "/contacts.json")
+    end
+
     def list_agents_path(query)
       URI.escape(config.base_endpoint + "/agents.json?query=#{query}")
     end

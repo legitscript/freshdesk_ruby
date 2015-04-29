@@ -16,5 +16,14 @@ module Freshdesk
         }
       }.to_json
     end
+
+    def user_body(name, email)
+      {
+        user: {
+          name: name,
+          email: email
+        }
+      }.to_json
+    end
   end
 end

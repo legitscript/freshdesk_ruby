@@ -67,4 +67,26 @@ describe Freshdesk::User do
       expect(user.email).to eq('james.rucker@legitscript.com')
     end
   end
+
+  describe '#create' do
+    let(:email) { 'user@example.com' }
+    let(:name) { 'Bob the Builder' }
+    let(:url) { endpoint.create_user_path }
+    let(:response_body) { '{"user":{"email":"user@example.com", "name": "Bob the Builder"}}'}
+
+    before do
+      stub_request(:post, url).to_return(status: 200, body: response_body, headers: {})
+    end
+
+    it 'posts to the Freshdesk endpoint for creating a new user' do
+      described_class.create(email, name)
+      expect(WebMock).to have_requested(:post, url)
+    end
+
+    it 'creates and returns a User instance' do
+      user = described_class.create(email, name)
+      expect(user.email).to eq('user@example.com')
+      expect(user.name).to eq('Bob the Builder')
+    end
+  end
 end

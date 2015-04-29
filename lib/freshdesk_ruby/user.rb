@@ -22,6 +22,15 @@ module Freshdesk
           return new(parsed_user['user'])
         end
       end
+
+      def create(name, email)
+        req_body = request_body.user_body(name, email)
+        url = endpoint.create_user_path
+        response = post_request(url, req_body)
+        with_error_handling(response) do |parsed|
+          new(parsed['user'])
+        end
+      end
     end
   end
 end
