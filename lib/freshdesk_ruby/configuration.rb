@@ -28,7 +28,7 @@ module Freshdesk
     end
 
     def base_path
-      protocol + '://' + subdomain + '.' + 'freshdesk.com'
+      "#{protocol}://#{subdomain}freshdesk.com"
     end
   end
 end
