@@ -36,9 +36,16 @@ module Freshdesk
         parsed = JSON.parse(response.body)
         if response.code.to_s !~ /2\d\d/
           Freshdesk::ResponseError.new(response)
+        elsif no_user_with_email_exists?(parsed)
+          Freshdesk::EmailNotFoundError.new(response)
         elsif contains_errors?(parsed)
           Freshdesk::ResponseError.new(response)
         end
+      end
+
+      def no_user_with_email_exists?(parsed_response)
+        return false unless parsed_response.is_a?(Hash)
+        parsed_response['errors'] && parsed_response['errors']['no_email']
       end
 
       def contains_errors?(parsed_response)

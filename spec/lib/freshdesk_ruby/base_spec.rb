@@ -22,6 +22,16 @@ describe Freshdesk::Base do
         object = described_class.response_error(response)
         expect(object).to be_nil
       end
+
+      context 'when response body is an empty array' do
+        let(:response_body) { '[]' }
+
+        it 'returns nil' do
+          response = described_class.get_request(endpoint.tickets_path)
+          object = described_class.response_error(response)
+          expect(object).to be_nil
+        end
+      end
     end
 
     context 'when authentication fails' do
@@ -53,7 +63,7 @@ describe Freshdesk::Base do
     end
 
     context 'when a JSON object with an "errors" key is sent' do
-      let(:response_body) { "{\"errors\":{\"no_email\":true}}" }
+      let(:response_body) { "{\"errors\":{\"require_login\":true}}" }
 
       before do
         stub_request(:get, endpoint.tickets_path)
@@ -70,6 +80,22 @@ describe Freshdesk::Base do
         response = described_class.get_request(endpoint.tickets_path)
         object = described_class.response_error(response)
         expect(object.message).to eq(response_body)
+      end
+
+      context 'when the error indicates that a user with a given email address does not exist' do
+        let(:response_body) { "{\"errors\":{\"no_email\":true}}" }
+        let(:object) do
+          response = described_class.get_request(endpoint.tickets_path)
+          described_class.response_error(response)
+        end
+
+        it 'returns a Freshdesk::EmailNotFoundError' do
+          expect(object).to be_a(Freshdesk::EmailNotFoundError)
+        end
+
+        it 'returns the correct message in the exception message' do
+          expect(object.message).to eq('No user with that email address exists in Freshdesk; have you created one?')
+        end
       end
     end
   end

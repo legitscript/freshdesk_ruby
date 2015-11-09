@@ -12,4 +12,10 @@ module Freshdesk
       body
     end
   end
+
+  class EmailNotFoundError < ResponseError
+    def to_s
+      'No user with that email address exists in Freshdesk; have you created one?'
+    end
+  end
 end
