@@ -58,11 +58,11 @@ Freshdesk::TicketField.all
 
 # With bad authentication:
 Freshdesk.configure { |c| c.api_key = 'wrong key' }
-object = Freshdesk::Ticket.find(10) #=> #<Freshdesk::ResponseError: Freshdesk::ResponseError>
+object = Freshdesk::Ticket.find(10) #=> #<Freshdesk::ResponseError: {"require_login": true}>
 object.body # => "{\"require_login\":true}"
 object.code # => 200
 
 # When a record isn't found:
-object = Freshdesk::Ticket.find(11230) #=> #<Freshdesk::ResponseError: Freshdesk::ResponseError>
+object = Freshdesk::Ticket.find(11230) #=> #<Freshdesk::ResponseError: {"errors":{"error":"Record Not Found"}}>
 object.body # => "{\"errors\":{\"error\":\"Record Not Found\"}}"
 object.code # => 404

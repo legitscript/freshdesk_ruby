@@ -7,5 +7,9 @@ module Freshdesk
       @body = response.body
       @code = response.code
     end
+
+    def to_s
+      body
+    end
   end
 end

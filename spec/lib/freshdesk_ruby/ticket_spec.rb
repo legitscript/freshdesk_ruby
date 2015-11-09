@@ -49,7 +49,7 @@ describe Freshdesk::Ticket do
       end
 
       it 'raises a Freshdesk::Response error' do
-        expect { described_class.find(ticket_id) }.to raise_error
+        expect { described_class.find(ticket_id) }.to raise_error(Freshdesk::ResponseError)
       end
     end
   end

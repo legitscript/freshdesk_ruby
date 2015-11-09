@@ -65,6 +65,12 @@ describe Freshdesk::Base do
         object = described_class.response_error(response)
         expect(object).to be_a(Freshdesk::ResponseError)
       end
+
+      it 'includes the correct message in the exception message' do
+        response = described_class.get_request(endpoint.tickets_path)
+        object = described_class.response_error(response)
+        expect(object.message).to eq(response_body)
+      end
     end
   end
 end
